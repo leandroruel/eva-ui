@@ -1,7 +1,8 @@
 # eva-ui — EVA NERV HUD Theme
 
 <p align="center">
-  <strong>Design system HUD inspirado em Evangelion — extraído de um monolito de 1072 linhas para um theme composable.</strong>
+  <strong>Um design system operacional para interfaces de centro de comando — built para parecer que sempre esteve lá.</strong><br/>
+  <em>A estética analógica da NERV, reconstruída como primitives React tipadas, testáveis e publicáveis.</em>
 </p>
 
 <p align="center">
@@ -14,7 +15,7 @@
   <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="MIT" />
 </p>
 
-> **Origem:** `EvangelionNERVDashboard.jsx` — HUD wireframe sobre preto puro, contorno fino 1-2px, cantos chanfrados (`corner-shape: bevel` + fallback `clip-path`), tokens `oklch` e `@property --sync`. Preservado em `EvangelionNERVDashboard.legacy.jsx`.
+> **Conceito:** o eva-ui nasceu da engenharia reversa de um HUD wireframe de Evangelion — preto absoluto, molduras em _bracket_ com dois cantos chanfrados, traço de 1.5px na cor de estado, faixas _hazard_ diagonais e tipografia bilíngue (kanji + en). Cada detalhe foi isolado em um componente com contrato explícito: `EvaButton` muda de tema só com `variant`, `EvaText` expõe a escala tipográfica da NERV, `Chamfer` e `HazardStrip` encapsulam a geometria. Tokens em `oklch`, cantos via `corner-shape: bevel` com fallback `clip-path` e `@property --sync` para animação sem JS. O monolito original (`EvangelionNERVDashboard.jsx`, 1072 linhas) está preservado em `EvangelionNERVDashboard.legacy.jsx` como registro do ponto de partida — o theme é a evolução.
 
 ---
 
