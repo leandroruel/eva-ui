@@ -1,0 +1,62 @@
+/* EvaButton — botão HUD com tema via variant prop */
+
+.eva-button {
+  --chamfer-color: var(--status-color);
+  --chamfer: 12px;
+  appearance: none;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 14px;
+  padding: 14px 18px;
+  color: var(--status-color);
+  font-family: inherit;
+  border: none;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+/* mapeamento variant -> --status-color */
+
+/* semânticos (StatusStack) */
+.eva-button.warning {
+  --status-color: var(--eva-yellow);
+}
+.eva-button.error {
+  --status-color: var(--eva-red);
+}
+.eva-button.success {
+  --status-color: var(--eva-green);
+}
+
+/* diretos (cores do theme) */
+.eva-button.orange {
+  --status-color: var(--eva-orange);
+}
+.eva-button.red {
+  --status-color: var(--eva-red);
+}
+.eva-button.green {
+  --status-color: var(--eva-green);
+}
+.eva-button.yellow {
+  --status-color: var(--eva-yellow);
+}
+.eva-button.cyan {
+  --status-color: var(--eva-cyan);
+}
+.eva-button.gray {
+  --status-color: var(--eva-gray);
+}
+
+/* estado ativo (preenchido) */
+.eva-button.is-on {
+  color: black;
+}
+
+.eva-button:hover:not(.is-on) {
+  background: color-mix(in oklch, var(--status-color) 12%, black);
+}

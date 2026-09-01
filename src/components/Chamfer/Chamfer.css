@@ -1,0 +1,3 @@
+/* Chamfer já definido em src/theme/chamfer.css — este arquivo garante que o
+   componente tenha o CSS carregado mesmo quando usado isolado. */
+@import "../../theme/chamfer.css";

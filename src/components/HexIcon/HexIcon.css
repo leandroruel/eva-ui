@@ -1,0 +1,23 @@
+/* Icone hexagonal em anel: dois clip-path polygon aninhados */
+
+.hex-icon {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+  position: relative;
+  background: var(--eva-dim);
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  transition: background-color 200ms ease;
+}
+
+.hex-icon.is-on {
+  background: var(--hex-color);
+  box-shadow: 0 0 8px var(--hex-color);
+}
+
+.hex-icon-inner {
+  position: absolute;
+  inset: 2.5px;
+  background: black;
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+}

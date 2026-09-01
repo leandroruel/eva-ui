@@ -1,0 +1,28 @@
+.eva-badge {
+  flex: 0 0 auto;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border: 1px solid var(--eva-dim);
+  color: var(--eva-dim);
+  border-radius: 4px 0 4px 0;
+  corner-shape: bevel square square bevel;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    border-color 200ms ease,
+    corner-shape 200ms ease;
+}
+
+@supports not (corner-shape: bevel) {
+  .eva-badge {
+    border-radius: 0;
+    clip-path: polygon(4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%, 0 4px);
+  }
+}
+
+.eva-badge.is-on {
+  background: var(--row-color);
+  color: black;
+  border-color: var(--row-color);
+}

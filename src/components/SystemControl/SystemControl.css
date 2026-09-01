@@ -1,0 +1,11 @@
+.system-list {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.system-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 26px;
+}

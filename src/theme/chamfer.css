@@ -1,0 +1,85 @@
+/* ===================================================================
+   CHANFRO — corner-shape + fallback clip-path
+   ===================================================================
+   Canto FECHADO no topo-esquerdo e base-direita; canto ABERTO
+   (sem linha) no topo-direito e base-esquerda. Bracket HUD.
+
+   Um corner-shape SEMPRE fecha a geometria — nao expressa vao aberto.
+   Por isso o estado ocioso usa dois pseudo-elementos em "L" que deixam
+   2 cantos sem linha. O preenchido (.is-on) usa corner-shape real.
+   =================================================================== */
+
+.chamfer {
+  --chamfer: 16px;
+  position: relative;
+  background: var(--eva-black);
+}
+
+.chamfer::before,
+.chamfer::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  border: 1.5px solid var(--chamfer-color, var(--eva-orange));
+  transition:
+    border-color 200ms ease,
+    opacity 150ms ease;
+}
+
+/* "L" superior-esquerdo: fecha topo-esquerda */
+.chamfer::before {
+  top: 0;
+  left: 0;
+  width: calc(100% - var(--chamfer));
+  height: calc(100% - var(--chamfer));
+  border-right: none;
+  border-bottom: none;
+}
+
+/* "L" inferior-direito: fecha base-direita */
+.chamfer::after {
+  right: 0;
+  bottom: 0;
+  width: calc(100% - var(--chamfer));
+  height: calc(100% - var(--chamfer));
+  border-left: none;
+  border-top: none;
+}
+
+.chamfer.is-on {
+  background: var(--chamfer-color);
+  border-radius: 0 var(--chamfer) 0 var(--chamfer);
+  corner-shape: square bevel square bevel;
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--chamfer)) 0,
+    100% var(--chamfer),
+    100% 100%,
+    var(--chamfer) 100%,
+    0 calc(100% - var(--chamfer))
+  );
+}
+
+@supports (corner-shape: bevel) {
+  .chamfer.is-on {
+    clip-path: none;
+  }
+}
+
+.chamfer.is-on::before,
+.chamfer.is-on::after {
+  opacity: 0;
+}
+
+/* Versão pequena (badges) — sempre fechada */
+.chamfer-sm {
+  border-radius: 0 6px 0 6px;
+  corner-shape: square bevel square bevel;
+}
+
+@supports not (corner-shape: bevel) {
+  .chamfer-sm {
+    border-radius: 0;
+    clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+  }
+}

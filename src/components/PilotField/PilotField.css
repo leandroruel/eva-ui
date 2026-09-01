@@ -1,0 +1,54 @@
+.pilot-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pilot-wrap {
+  --pilot-color: var(--eva-yellow);
+}
+
+.pilot-wrap.is-error {
+  --pilot-color: var(--eva-red);
+}
+
+.pilot-wrap.is-success {
+  --pilot-color: var(--eva-green);
+}
+
+.pilot-box {
+  --chamfer-color: var(--pilot-color);
+  --chamfer: 10px;
+  padding: 0;
+}
+
+.pilot-input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+}
+
+.pilot-input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  caret-color: var(--pilot-color);
+}
+
+.pilot-input::placeholder {
+  color: color-mix(in oklch, white 35%, transparent);
+}
+
+.pilot-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+}

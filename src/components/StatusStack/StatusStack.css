@@ -1,0 +1,9 @@
+.status-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.activate-caption {
+  margin-top: 10px;
+}

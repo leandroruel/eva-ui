@@ -1,0 +1,57 @@
+.sync-limit-line {
+  height: 2px;
+  background: color-mix(in oklch, var(--eva-red) 70%, transparent);
+  box-shadow: 0 0 6px color-mix(in oklch, var(--eva-red) 70%, transparent);
+  margin-bottom: 18px;
+}
+
+.sync-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 78px;
+}
+
+.sync-bar {
+  flex: 1;
+  min-width: 3px;
+  background: var(--eva-orange);
+  box-shadow: 0 0 5px color-mix(in oklch, var(--eva-orange) 55%, transparent);
+  transition: height 110ms linear;
+}
+
+.sync-track {
+  position: relative;
+  height: 12px;
+  border: 1px solid color-mix(in oklch, var(--eva-gray) 45%, transparent);
+  margin-top: 16px;
+}
+
+.sync-track-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--eva-orange);
+  width: var(--fill, 30%);
+  transition: width 200ms ease;
+}
+
+.sync-track-marker {
+  position: absolute;
+  top: -8px;
+  left: var(--fill, 30%);
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 9px solid var(--eva-orange);
+  filter: drop-shadow(0 0 3px color-mix(in oklch, var(--eva-orange) 70%, transparent));
+  transition: left 200ms ease;
+}
+
+.sync-readout {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 18px;
+}

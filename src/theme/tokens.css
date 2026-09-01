@@ -1,0 +1,24 @@
+/* ===================================================================
+   TOKENS — Evangelion NERV
+   =================================================================== */
+.nerv-root {
+  --eva-black: oklch(0% 0 0);
+  --eva-orange: oklch(75% 0.19 55);
+  --eva-red: oklch(65% 0.24 25);
+  --eva-green: oklch(89% 0.29 130);
+  --eva-yellow: oklch(85% 0.16 95);
+  --eva-cyan: oklch(88% 0.14 200);
+  --eva-gray: oklch(75% 0 0);
+  --eva-dim: oklch(38% 0 0);
+
+  /* --sync tipado via @property permite ao motor interpolar o valor
+     (usado no preenchimento da trilha) sem recalculo manual em JS a
+     cada frame. */
+  --sync: 23;
+}
+
+@property --sync {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 23;
+}

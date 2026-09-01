@@ -1,0 +1,202 @@
+/* EvaText — primitive tipográfico do theme NERV */
+
+.eva-text {
+  font-family: inherit;
+  letter-spacing: inherit;
+  text-transform: uppercase;
+  line-height: 1.35;
+}
+
+/* variantes */
+.eva-text--kanji {
+  font-size: clamp(15px, 1.6vw, 19px);
+  font-weight: 700;
+}
+
+.eva-text--en {
+  font-size: clamp(10px, 1vw, 12px);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+
+.eva-text--caption {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--eva-orange);
+  opacity: 0.55;
+}
+.eva-text--caption.eva-text--tone-warning {
+  color: var(--eva-yellow);
+  opacity: 0.9;
+}
+.eva-text--caption.eva-text--tone-error {
+  color: var(--eva-red);
+  opacity: 0.9;
+}
+.eva-text--caption.eva-text--tone-success {
+  color: var(--eva-green);
+  opacity: 0.75;
+}
+
+.eva-text--eyebrow {
+  font-size: 10px;
+  color: var(--eva-gray);
+  opacity: 0.65;
+  letter-spacing: 0.2em;
+}
+
+.eva-text--eyebrowStrong {
+  font-size: 10px;
+  font-weight: 700;
+  color: inherit;
+  opacity: 1;
+  letter-spacing: 0.2em;
+}
+
+.eva-text--limitRow {
+  font-size: 9.5px;
+  color: var(--eva-red);
+  letter-spacing: 0.15em;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 6px;
+}
+
+.eva-text--readoutLabel {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+}
+
+.eva-text--readoutValue {
+  font-size: clamp(26px, 3.2vw, 38px);
+  font-weight: 700;
+  color: var(--eva-yellow);
+  text-shadow: 0 0 10px color-mix(in oklch, var(--eva-yellow) 60%, transparent);
+}
+.eva-text--readoutValue small {
+  font-size: 0.5em;
+  margin-left: 2px;
+}
+
+.eva-text--title {
+  font-size: 12.5px;
+  font-weight: 800;
+  display: block;
+  line-height: 1.35;
+}
+
+.eva-text--sub {
+  font-size: 9.5px;
+  font-weight: 600;
+  opacity: 0.8;
+  display: block;
+  letter-spacing: 0.1em;
+}
+
+.eva-text--pilotLabel {
+  color: var(--pilot-color);
+  font-size: 11px;
+  font-weight: 700;
+  flex: 0 0 auto;
+  transition: color 200ms ease;
+}
+
+.eva-text--pilotStatus {
+  color: var(--pilot-color, var(--eva-yellow));
+  font-weight: 700;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+}
+
+.eva-text--pilotDetail {
+  color: var(--eva-gray);
+  opacity: 0.7;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+}
+
+.eva-text--target {
+  font-size: clamp(15px, 1.6vw, 19px);
+  color: var(--eva-orange);
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  text-align: center;
+}
+
+.eva-text--jp {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.eva-text--enSmall {
+  font-size: 9px;
+  opacity: 0.75;
+  letter-spacing: 0.1em;
+  line-height: 1.35;
+}
+
+.eva-text--badge {
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.eva-text--count {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--eva-gray);
+}
+
+.eva-text--magi {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--eva-dim);
+}
+.eva-text--magi.eva-text--tone-success,
+.eva-text--magi.is-approved {
+  color: var(--eva-orange);
+  text-shadow: 0 0 8px color-mix(in oklch, var(--eva-orange) 60%, transparent);
+}
+
+.eva-text--body {
+  font-size: 12px;
+}
+
+/* tones genéricos */
+.eva-text--tone-orange {
+  color: var(--eva-orange);
+}
+.eva-text--tone-red {
+  color: var(--eva-red);
+}
+.eva-text--tone-green {
+  color: var(--eva-green);
+}
+.eva-text--tone-yellow {
+  color: var(--eva-yellow);
+}
+.eva-text--tone-cyan {
+  color: var(--eva-cyan);
+}
+.eva-text--tone-gray {
+  color: var(--eva-gray);
+}
+.eva-text--tone-dim {
+  color: var(--eva-dim);
+}
+.eva-text--tone-pilot {
+  color: var(--pilot-color);
+}
+.eva-text--tone-inherit {
+  color: inherit;
+}
+.eva-text--tone-warning {
+  color: var(--eva-yellow);
+}
+.eva-text--tone-error {
+  color: var(--eva-red);
+}
+.eva-text--tone-success {
+  color: var(--eva-green);
+}

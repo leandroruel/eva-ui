@@ -1,0 +1,6 @@
+.target-box {
+  border: 1.5px solid var(--eva-orange);
+  background: var(--eva-black);
+  padding: 20px 24px;
+  text-align: center;
+}

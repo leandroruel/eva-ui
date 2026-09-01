@@ -1,0 +1,48 @@
+/* Base do HUD — preto puro + scanlines CRT */
+
+.nerv-root {
+  background: var(--eva-black);
+  color: var(--eva-gray);
+  font-family: "JetBrains Mono", "Noto Sans Mono", ui-monospace, monospace;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  padding: clamp(20px, 4vw, 56px) clamp(20px, 5vw, 64px);
+  container-type: inline-size;
+  container-name: nerv;
+}
+
+/* Scanlines discretas de CRT — decorativas, nao capturam clique */
+.nerv-root::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: 0.35;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    oklch(100% 0 0 / 0.04) 0px,
+    oklch(100% 0 0 / 0.04) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+}
+
+.nerv-eyebrow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--eva-gray);
+  opacity: 0.65;
+  margin-bottom: 8px;
+  letter-spacing: 0.2em;
+}
+
+.nerv-eyebrow b {
+  color: inherit;
+  opacity: 1;
+  font-weight: 700;
+}

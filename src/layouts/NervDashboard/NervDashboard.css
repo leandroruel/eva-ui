@@ -1,0 +1,22 @@
+/* Grid 3 colunas — vira 1 coluna em container estreito */
+
+.nerv-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr 1fr;
+  gap: clamp(28px, 6vw, 90px);
+  position: relative;
+  z-index: 1;
+}
+
+@container nerv (max-width: 820px) {
+  .nerv-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.nerv-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(48px, 9vw, 120px);
+}
