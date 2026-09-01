@@ -1,8 +1,8 @@
 # eva-ui — EVA NERV HUD Theme
 
 <p align="center">
-  <strong>Um design system operacional para interfaces de centro de comando — built para parecer que sempre esteve lá.</strong><br/>
-  <em>A estética analógica da NERV, reconstruída como primitives React tipadas, testáveis e publicáveis.</em>
+  <strong>EVA-UI é um tema inspirado no anime Evangelion, trazido para componentes React.</strong><br/>
+  <em>A estética da NERV — HUDs, brackets chanfrados, faixas hazard e tipografia bilíngue — como um design system composable.</em>
 </p>
 
 <p align="center">
