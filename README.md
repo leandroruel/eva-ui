@@ -1,99 +1,172 @@
-# eva-ui — EVA NERV Theme
+# eva-ui — EVA NERV HUD Theme
 
-Design system extraído de `EvangelionNERVDashboard.jsx` (1072 linhas, monolito original preservado em `EvangelionNERVDashboard.legacy.jsx`).
+<p align="center">
+  <strong>Design system HUD inspirado em Evangelion — extraído de um monolito de 1072 linhas para um theme composable.</strong>
+</p>
 
-> **Stack:** Vite + React 19 + TypeScript · CSS puro (oklch + `corner-shape`/`clip-path` + `@property`)
+<p align="center">
+  <a href="https://github.com/leandroruel/eva-ui"><img src="https://img.shields.io/github/stars/leandroruel/eva-ui?style=flat-square" alt="stars" /></a>
+  <img src="https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react" alt="React 19" />
+  <img src="https://img.shields.io/badge/Vite-6-646CFF?style=flat-square&logo=vite" alt="Vite" />
+  <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript" alt="TS" />
+  <img src="https://img.shields.io/badge/oxlint-%E2%9C%94-00D492?style=flat-square" alt="oxlint" />
+  <img src="https://img.shields.io/badge/oxfmt-%E2%9C%94-00D492?style=flat-square" alt="oxfmt" />
+  <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="MIT" />
+</p>
 
-## Estrutura
+> **Origem:** `EvangelionNERVDashboard.jsx` — HUD wireframe sobre preto puro, contorno fino 1-2px, cantos chanfrados (`corner-shape: bevel` + fallback `clip-path`), tokens `oklch` e `@property --sync`. Preservado em `EvangelionNERVDashboard.legacy.jsx`.
 
-```
-src/
-├── theme/
-│   ├── tokens.css        # --eva-* + @property --sync
-│   ├── base.css          # .nerv-root + scanlines CRT
-│   ├── chamfer.css       # .chamfer / .chamfer-sm (bracket HUD)
-│   └── index.css         # barrel CSS
-├── hooks/
-│   ├── useSyncEqualizer.ts      # EvangelionNERVDashboard.jsx:40
-│   └── useAnimatedNumber.ts     # EvangelionNERVDashboard.jsx:71
-├── components/
-│   ├── HexIcon/           # EvangelionNERVDashboard.jsx:100
-│   ├── SystemRow/         # :114 (usa HexIcon)
-│   ├── Notification/      # :145 (ENTRY_FLASH_MS, fases entering/active)
-│   ├── StatusStack/       # 3 botões WARNING/ERROR/SUCCESS (911-941)
-│   ├── SyncRatio/         # barras + trilha + readout (944-962)
-│   ├── PilotField/        # PilotField + PilotStack + getPilotStatus (983-1022)
-│   ├── TargetBox/         # (1027)
-│   └── SystemControl/     # SystemRow ×3 + MAGI footer (1032-1067)
-├── layouts/
-│   └── NervDashboard/
-│       ├── NervDashboard.tsx  # orquestra todo o estado (200-1072)
-│       └── NervDashboard.css  # .nerv-grid / .nerv-col (@container)
-├── App.tsx               # <NervDashboard />
-├── main.tsx
-└── index.ts              # barrel para publish como lib
-```
+---
 
-## Uso
+## ✨ Features
 
-### Dev (dashboard)
+- **Theme puro CSS** — sem dependência de UI lib, tokens `oklch`, `corner-shape`/`clip-path`, scanlines CRT
+- **Primitives atomizados** — cada detalhe é componente (`EvaButton`, `EvaText`, `Chamfer`, `HazardStrip`, `EvaEyebrow`, `EvaBadge`, `HexBadge`...)
+- **Composables** — `StatusStack`, `SyncRatio`, `PilotField`, `Notification`, `SystemControl`, `TargetBox` + `NervDashboard` layout 3 colunas (`@container`)
+- **Type-safe** — TypeScript strict, hooks `useSyncEqualizer` / `useAnimatedNumber`
+- **Qualidade** — `oxlint` + `oxfmt` + `tsc --noEmit` no `npm run check`
+- **Dual build** — app (`dist/index.html`) e lib (`dist/eva-ui.{js,css,umd.cjs}`) para publicar como pacote
+
+## 🚀 Quick start
 
 ```bash
+git clone https://github.com/leandroruel/eva-ui.git
+cd eva-ui
 npm install
 npm run dev        # http://localhost:5173
-npm run build      # build app → dist/index.html
-npm run preview
 ```
-
-### Lib (theme)
 
 ```bash
-npm run build:lib  # → dist/eva-ui.{js,css,umd.cjs}
+npm run build      # app → dist/index.html
+npm run build:lib  # lib → dist/eva-ui.{js,css,umd.cjs}
+npm run preview    # preview do build
 ```
 
-Import no consumidor:
+```bash
+npm run check      # typecheck + oxlint + oxfmt --check
+npm run lint:fix   # oxlint --fix
+npm run fmt        # oxfmt
+```
+
+## 📦 Uso como lib
 
 ```ts
 import { NervDashboard } from "eva-ui";
 import "eva-ui/dist/eva-ui.css";
-// ou granular:
-import { StatusStack, SyncRatio, PilotStack } from "eva-ui";
+
+// granular
+import {
+  EvaButton,
+  EvaText,
+  StatusStack,
+  SyncRatio,
+  PilotStack,
+  Chamfer,
+  HazardStrip,
+} from "eva-ui";
 import "eva-ui/src/theme/index.css";
 ```
 
-### Compatibilidade legada
+```tsx
+// botão temático via prop variant
+<EvaButton variant="warning" active={status === "warning"} onClick={() => setStatus("warning")}>
+  <EvaText variant="kanji">警告</EvaText>
+  <EvaText variant="en">WARNING</EvaText>
+</EvaButton>
 
-```ts
-// ainda funciona (shim em ./EvangelionNERVDashboard.jsx):
-import NervDashboard from "./EvangelionNERVDashboard";
-// prefira:
-import NervDashboard from "./src/layouts/NervDashboard/NervDashboard";
+// texto atomizado
+<EvaText variant="caption" tone="success">EVA-01 · ACTIVE / LOCKED / SYNCED / OK</EvaText>
+<EvaEyebrow left={<EvaText variant="eyebrowStrong">パイロットID</EvaText>} right="PILOT ID · NERV" />
+
+// wrapper chamfer + hazard
+<Chamfer color="yellow" size="10px" active={isActive}>
+  <HazardStrip color="pilot" />
+  <HexBadge status="success" />
+</Chamfer>
 ```
 
-## Inventário do monolito
+**Cores disponíveis:** `orange | red | green | yellow | cyan | gray | dim | black` + semânticos `warning→yellow | error→red | success→green` — centralizados em `src/theme/colors.ts:1` via `resolveEvaColor()`.
 
-| Bloco                                     | Linhas   | Extraído para                                  |
-| ----------------------------------------- | -------- | ---------------------------------------------- |
-| `useSyncEqualizer`                        | 40-66    | `src/hooks/useSyncEqualizer.ts`                |
-| `useAnimatedNumber`                       | 71-93    | `src/hooks/useAnimatedNumber.ts`               |
-| `HexIcon`                                 | 100-109  | `src/components/HexIcon/`                      |
-| `SystemRow`                               | 114-132  | `src/components/SystemRow/`                    |
-| `Notification`                            | 145-189  | `src/components/Notification/`                 |
-| `EvangelionNERVDashboard` (estado + grid) | 200-1072 | `src/layouts/NervDashboard/`                   |
-| `<style>` tokens/base                     | 313-400  | `src/theme/`                                   |
-| `.chamfer` / `.chamfer-sm`                | 419-483  | `src/theme/chamfer.css`                        |
-| `.status-stack` / `.btn-status`           | 494-535  | `src/components/StatusStack/`                  |
-| `.sync-*`                                 | 541-605  | `src/components/SyncRatio/`                    |
-| `.notif-*`                                | 616-727  | `src/components/Notification/`                 |
-| `.pilot-*`                                | 737-808  | `src/components/PilotField/`                   |
-| `.target-box`                             | 814-824  | `src/components/TargetBox/`                    |
-| `.system-*` / `.hex-icon`                 | 829-903  | `src/components/SystemRow/` + `SystemControl/` |
+## 🗂️ Estrutura
 
-CSS: ~590 linhas inline foram fatiadas sem reescrever valores (oklch, `corner-shape: bevel` com fallback `clip-path`, `@property --sync` preservados).
+```
+src/
+├── theme/
+│   ├── tokens.css        # --eva-* oklch + @property --sync
+│   ├── base.css          # .nerv-root + scanlines
+│   ├── chamfer.css       # .chamfer / .chamfer-sm
+│   ├── colors.ts         # EVA_COLORS + resolveEvaColor (single source)
+│   └── index.css
+├── hooks/
+│   ├── useSyncEqualizer.ts
+│   └── useAnimatedNumber.ts
+├── components/
+│   ├── EvaButton/        # botão HUD variant prop
+│   ├── EvaText/          # primitive tipográfica (kanji, en, caption, eyebrow, title, sub, pilotLabel...)
+│   ├── Chamfer/          # wrapper bracket
+│   ├── HazardStrip/      # faixa listrada
+│   ├── EvaEyebrow/       # header nerv-eyebrow
+│   ├── EvaBadge/         # badge retangular
+│   ├── HexBadge/         # hexágono !/✓ piloto
+│   ├── HexIcon/          # hex outline
+│   ├── StatusStack/      # 3× EvaButton
+│   ├── SyncRatio/        # SyncBars + SyncTrack + SyncReadout + LimitRow/Line
+│   ├── Notification/     # Flag + Timer + EvaText
+│   ├── PilotField/       # Chamfer + EvaText + HexBadge + HazardStrip
+│   ├── TargetBox/
+│   └── SystemControl/ + SystemRow/
+├── layouts/NervDashboard/ # grid 3 colunas (@container) → 1 coluna
+├── App.tsx
+├── main.tsx
+└── index.ts              # barrel lib
+```
 
-## Próximos passos sugeridos
+## 🎨 Theme
 
-1. Decidir se publica como `eva-ui` no npm ou mantém interno.
-2. Adicionar Storybook / exemplos por componente.
-3. Migrar CSS para CSS Modules se precisar isolar (hoje é global, como no original).
-4. Remover `EvangelionNERVDashboard.legacy.jsx` quando não precisar mais de referência.
+Tokens em `src/theme/tokens.css:1` — `oklch` + `@property --sync`. Chamfer usa `corner-shape: bevel` com `@supports not (corner-shape: bevel)` fallback em `clip-path`. Scanlines em `base.css:17`.
+
+Para novo projeto, importe só `src/theme/index.css` e componha com `Chamfer`/`EvaText`/`EvaButton`.
+
+## 🤝 Contribuindo
+
+Este projeto é **open source** e contribuições são muito bem-vindas!
+
+1. **Fork** o repositório
+2. Crie uma branch: `git checkout -b feat/minha-feature`
+3. Instale e rode os checks:
+
+   ```bash
+   npm install
+   npm run check   # typecheck + lint + fmt
+   ```
+
+4. Commite com [Conventional Commits](https://www.conventionalcommits.org/): `feat: adiciona variante cyan ao EvaButton`
+5. Abra um **Pull Request** — descreva o que mudou e por quê, inclua screenshots se for visual
+
+### Diretrizes
+
+- Mantenha componentes **pequenos e com CSS próprio** (um detalhe = um componente, textos via `EvaText`)
+- Use `resolveEvaColor()` para cores — não duplique `colorMap`
+- Rode `npm run lint:fix && npm run fmt` antes do PR
+- Adicione exemplos no `NervDashboard` ou crie stories se for novo primitive
+
+### Issues
+
+Abra uma issue para bugs, ideias ou dúvidas. Use labels `bug`, `enhancement`, `good first issue`. Respostas em até 48h.
+
+### Código de conduta
+
+Seja respeitoso. Discussões técnicas objetivas, sem ruído. Seguimos o [Contributor Covenant](https://www.contributor-covenant.org/).
+
+## 📄 Licença
+
+MIT © [Leandro Ruel](https://github.com/leandroruel) — veja `LICENSE`. Uso livre para projetos pessoais e comerciais, mantenha o aviso de licença.
+
+## 🙏 Créditos
+
+- Design original: HUD de Neon Genesis Evangelion / NERV
+- Reconstrução fiel ao print de referência — wireframe, bracket aberto, hazard stripes
+
+---
+
+<p align="center">Feito com evangelion e oklch. PRs bem-vindos!</p>
